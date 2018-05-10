@@ -1,0 +1,33 @@
+<% include ./partials/header %>
+  <div class="row">
+    <div class="col-md-6">
+      <form method="post" action="/todo/add">
+        <div class="form-group">
+          <label>Todo Title</label>
+          <input class="form-control" type="text" name="title" placeholder="Add Title">
+        </div>
+        <div class="form-group">
+          <label>Todo Body</label>
+          <textarea class="form-control" name="body" placeholder="Add Body"></textarea>
+          <br>
+          <button class="btn btn-primary btn-block" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <ul class="list-group">
+        <% todos.forEach((todo) => { %>
+          <li class="list-group-item">
+            <%= todo.title %> - <%= todo.body %>
+            <a class="btn btn-default" href="/todo/edit/<%= todo.title %>">Edit</a>
+            <a data-title="<%= todo.title %>" href="#" class="delete-todo btn btn-danger">Delete</a>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+
+<% include ./partials/footer %>
+
+<script type="application/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+<script type="application/javascript" src="js/main.js"></script>
